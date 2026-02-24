@@ -1,0 +1,33 @@
+body{
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#tablero{
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.celda{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #333;
+}
+
+.celda:hover{
+    background-color: blueviolet;
+}
+
+button{
+    padding: 10px 20px;
+    font-size: 16px;
+}
