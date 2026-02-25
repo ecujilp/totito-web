@@ -1,30 +1,43 @@
-body{
-    text-align: center;
-    font-family: Arial, sans-serif;
+body {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
 }
 
-#tablero{
+.tablero {
     display: grid;
     grid-template-columns: repeat(3, 100px);
-    grid-gap: 5px;
-    justify-content: center;
-    margin: 20px auto;
+    gap: 10px;
 }
 
-.celda{
+.celda {
     width: 100px;
     height: 100px;
-    background-color: aqua;
-    font-size: 40px;
+    background-color: #374151;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    border-radius: 15px;
     cursor: pointer;
-    border: 2px solid #333;
+    transition: 0.2s;
 }
 
-.celda:hover{
-    background-color: blueviolet;
+.celda:hover {
+    background-color: #4b5563;
+    transform: scale(1.05);
+}
+
+.celda.X {
+    color: #ef4444;
+}
+
+.celda.O {
+    color: #3b82f6;
 }
 
 button{
