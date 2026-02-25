@@ -73,69 +73,86 @@ function manejarClick(e) {
                 celdas.forEach(celda => {
                     celda.textContent = "";
                 });
-
-    
-    
         }
+
         function jugarMaquina(){
-        if(!juegoActivo) return;
+            if(!juegoActivo) return;
 
-        //intentar ganar
-        let movimiento = buscarMovimientoGanador("O");
-        if (movimiento !== -1){
-            hacerMoviemiento(movimiento);
-            return;
-        }
-          
-        //bloquear al jugador si va a ganar
-        movimiento = buscarMovimientoGanador("X");
-        if(movimiento !== -1){
-            hacerMoviemiento(movimiento);
-            return;
-        }
-        //tomar el centro
-        if(estadoTablero[4] === ""){
-            hacerMoviemiento(4);
-            return;
-        }
+            let mejorPuntaje = -Infinity;
+            let movimiento;
 
-        //tomar esquinas
-        const esquinas = [0, 2, 6, 8];
-        for(let esquina of esquinas){
-            if (estadoTablero[esquina] === ""){
-                hacerMoviemiento(esquina);
-                return;
+            for(let i=0; i < estadoTablero.length; i++){
+                if(estadoTablero[i] === ""){
+                    estadoTablero[i] = "O";
+                    let puntaje = minimax(estadoTablero, 0, false);
+                    estadoTablero[i] = "";
+                    if(puntaje > mejorPuntaje){
+                        mejorPuntaje = puntaje;
+                        movimiento = i;
+                    }
+                }
+                }
+                hacerMoviemiento(movimiento);
+            }
+        
+            function minimax(tablero, profundidad, esMaximizado){
+
+                let resultado =evaluarTablero();
+
+                if(resultado !== null){
+                    const puntajes = {
+                        "X": -10,
+                        "O": 10,
+                        "empate": 0
+                    };
+                    return puntajes[resultado];
+                }
+
+                if(esMaximizado){
+                    let mejorPuntaje =-Infinity;
+                    for(let i=0; i < tablero.length; i++){
+                        if(tablero[i] === ""){
+                            tablero[i] = "O";
+                            let puntaje = minimax(tablero, profundidad + 1, false);
+                            tablero[i] = "";
+                            mejorPuntaje = Math.max(puntaje, mejorPuntaje);
+                        }
+                    }
+                    return mejorPuntaje;
+                }else{
+                    let mejorPuntaje = Infinity;
+                    for(let i= 0; i < tablero.length; i++){
+                        if(tablero[i] === ""){
+                            tablero[i] ="X";
+                            let puntaje = minimax(tablero, profundidad + 1, true);
+                        tablero[i] = "";
+                        mejorPuntaje = Math.min(puntaje, mejorPuntaje);
+                        }
+                    }
+                    return mejorPuntaje;
+                }
+            }
+
+        
+    function evaluarTablero(){
+        for(let combinacion of combinacionesGanadoras){
+            const [a,b,c] = combinacion;
+            if(
+                estadoTablero[a] &&
+                estadoTablero[a] === estadoTablero[b] &&
+                estadoTablero[a] === estadoTablero[c]
+            ){
+                return estadoTablero[a];
             }
         }
 
-        //última opción
-        for(let i= 0; i < estadoTablero.length; i++){
-            if (estadoTablero[i] === ""){
-                hacerMoviemiento(i);
-                return;
-            }
+        if(!estadoTablero.includes("")){
+            return "empate";
         }
+        return null;
     }
-
-    function buscarMovimientoGanador(jugador){
-        for (let combinacion of combinacionesGanadoras){
-            const [a, b, c] = combinacion;
-            let valores = [
-                estadoTablero[a],
-                estadoTablero[b],
-                estadoTablero[c]
-            ];
-            if (
-                valores.filter(v => v === jugador).length === 2 &&
-                valores.includes("")
-            )
-            if(estadoTablero[a] === "")return a;
-            if(estadoTablero[b] === "")return b;
-            if(estadoTablero[c] === "")return c;
-            return -1;
-        }
-    }
-
+        
+     
     function hacerMoviemiento(posicion){
         estadoTablero[posicion] = "O";
         celdas[posicion].textContent = "O";
