@@ -53,7 +53,20 @@ function manejarClick(e) {
 }
     
         if (gano){
-            mensaje.textContent = "Gano " + turno + "!";
+            let ganador;
+
+            for(let combinacion of combinacionesGanadoras){
+                const [a,b,c] = combinacion;
+                if(
+                    estadoTablero[a] &&
+                    estadoTablero[a] === estadoTablero[b] &&
+                    estadoTablero[a] === estadoTablero[c]
+                ){
+                    ganador = estadoTablero[a];
+                  break;
+                }
+            }
+            mensaje.textContent = "Ganó " + ganador + "!";
             juegoActivo = false;
             return;
         }
