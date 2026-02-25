@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Totito</title>
-        <link rel="stylesheet" href="styles.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Totito IA Profesional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    </head>
-    <body>
-        <h1>Juego de Totito</h1>
-        <div id="tablero">
+<div class="contenedor">
+    <h1>Totito IA</h1>
+
+    <div class="tablero">
         <div class="celda" data-index="0"></div>
         <div class="celda" data-index="1"></div>
         <div class="celda" data-index="2"></div>
@@ -18,11 +21,13 @@
         <div class="celda" data-index="6"></div>
         <div class="celda" data-index="7"></div>
         <div class="celda" data-index="8"></div>
-        </div>
-    <h2 id="mensaje"></h2>
-    <button onclick="reiniciarJuego()">Reiniciar</button>
+    </div>
 
-    <script src="script.js"></script>
-    
-    </body>
+    <p id="mensaje"></p>
+
+    <button id="btnReiniciar">Reiniciar</button>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>
