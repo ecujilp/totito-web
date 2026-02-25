@@ -6,6 +6,7 @@ body {
     height: 100vh;
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
+    color: white;
 }
 
 .contenedor {
@@ -13,20 +14,18 @@ body {
 }
 
 h1 {
-    color: white;
     margin-bottom: 20px;
 }
 
 .tablero {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 10px;
+    grid-template-columns: repeat(3, minmax(90px, 120px));
+    gap: 12px;
     margin-bottom: 20px;
 }
 
 .celda {
-    width: 100px;
-    height: 100px;
+    aspect-ratio: 1 / 1;
     background-color: #374151;
     display: flex;
     justify-content: center;
@@ -50,26 +49,22 @@ h1 {
     color: #3b82f6;
 }
 
-#mensaje {
-    color: white;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
 button {
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
-    color: white;
+    padding: 10px 20px;
     border: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.2s;
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    background-color: #2563eb;
+}
+
+#mensaje {
+    margin-top: 15px;
+    font-weight: bold;
 }
