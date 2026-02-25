@@ -8,10 +8,20 @@ body {
     margin: 0;
 }
 
+.contenedor {
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
 .tablero {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .celda {
@@ -38,4 +48,28 @@ body {
 
 .celda.O {
     color: #3b82f6;
+}
+
+#mensaje {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }

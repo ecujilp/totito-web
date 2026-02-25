@@ -1,5 +1,8 @@
 const celdas = document.querySelectorAll(".celda");
 const mensaje = document.getElementById("mensaje");
+const botonReiniciar = document.getElementById("reiniciar");
+
+botonReiniciar.addEventListener("click", reiniciarJuego);
 
 let turno = "x";
 let juegoActivo= true;
@@ -80,11 +83,12 @@ function manejarClick(e) {
     function reiniciarJuego(){
                 estadoTablero = ["", "", "", "", "", "", "", "", ""];
                 juegoActivo = true;
-                turno="x";
-                mensaje.textContent= "";
+                turno="X";
+                juegoActivo = true;
 
                 celdas.forEach(celda => {
                     celda.textContent = "";
+                    celda.classList.remove("X", "O");
                 });
         }
 
